@@ -16,6 +16,10 @@ export class ComputerFeed {
     await this.page.goto("https://computer-database.gatling.io/computers");
   }
 
+  async clickOnAddNewButton() {
+    await this.addNewButton.click();
+  }
+
   async checkSuccessAdditionToast(computerName: string) {
     await expect(
       this.page.getByText(`Done ! Computer ${computerName} has been created`)

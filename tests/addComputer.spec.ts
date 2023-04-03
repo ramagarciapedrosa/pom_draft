@@ -1,11 +1,11 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { ComputerFeed } from "../pages/computersFeed";
 import { AddComputer } from "../pages/addComputer";
 
 test("add new computer", async function ({ page }) {
-  const computerFeed = new ComputerFeed(page);
-  await computerFeed.goto();
-  await computerFeed.addNewButton.click();
+  const computersFeed = new ComputerFeed(page);
+  await computersFeed.goto();
+  await computersFeed.clickOnAddNewButton();
 
   const addComputer = new AddComputer(page);
   const computerName = "Commodore 64";
@@ -16,5 +16,5 @@ test("add new computer", async function ({ page }) {
     "Commodore International"
   );
 
-  await computerFeed.checkSuccessAdditionToast(computerName);
+  await computersFeed.checkSuccessAdditionToast(computerName);
 });
