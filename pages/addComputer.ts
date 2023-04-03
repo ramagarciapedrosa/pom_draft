@@ -20,4 +20,17 @@ export class AddComputer {
     });
     this.cancelButton = this.page.getByRole("button", { name: "Cancel" });
   }
+
+  async fillComputerForm(
+    computerName: string,
+    introducedDate: string,
+    discontinuedDate: string,
+    company: string
+  ) {
+    await this.computerNameField.fill(computerName);
+    await this.introducedField.fill(introducedDate);
+    await this.discontinuedField.fill(discontinuedDate);
+    await this.companyDropdown.selectOption(company);
+    await this.createButton.click();
+  }
 }

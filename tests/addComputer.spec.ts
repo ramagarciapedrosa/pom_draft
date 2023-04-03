@@ -9,13 +9,12 @@ test("add new computer", async function ({ page }) {
 
   const addComputer = new AddComputer(page);
   const computerName = "Commodore 64";
-  await addComputer.computerNameField.fill(computerName);
-  await addComputer.introducedField.fill("2000-12-20");
-  await addComputer.discontinuedField.fill("2012-08-21");
-  await addComputer.companyDropdown.selectOption("IBM");
-  await addComputer.createButton.click();
+  await addComputer.fillComputerForm(
+    computerName,
+    "1982-01-07",
+    "1985-07-01",
+    "Commodore International"
+  );
 
-  await expect(
-    computerFeed.checkSuccessAdditionToast(computerName)
-  ).toBeVisible();
+  await computerFeed.checkSuccessAdditionToast(computerName);
 });

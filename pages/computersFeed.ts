@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 export class ComputerFeed {
   page: Page;
@@ -12,10 +12,13 @@ export class ComputerFeed {
     this.addNewButton = page.getByRole("link", { name: "Add a new computer" });
   }
 
-  goto() {
-    this.page.goto("https://computer-database.gatling.io/computers");
+  async goto() {
+    await this.page.goto("https://computer-database.gatling.io/computers");
   }
 
-  checkSuccessAdditionToast = (computerName: string) =>
-    this.page.getByText(`Done ! Computer ${computerName} has been created`);
+  async checkSuccessAdditionToast(computerName: string) {
+    await expect(
+      this.page.getByText(`Done ! Computer ${computerName} has been created`)
+    ).toBeVisible();
+  }
 }
